@@ -1,5 +1,5 @@
 require "ggake/version"
 
-module Ggake
-  # Your code goes here...
-end
+require "ggake/haml"
+require "ggake/transient"
+require "ggake/s3cp"
