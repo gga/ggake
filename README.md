@@ -1,4 +1,4 @@
-# Ggake
+# ggake
 
 Over time I've written a bunch of useful little functions and tasks
 that have been handy in the build systems of my projects. Finally,
