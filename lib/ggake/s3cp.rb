@@ -2,24 +2,29 @@ module Rake
   module DSL
 
     def s3cp(dir, options)
-      # Done here to allow AWS::S3 to be an optional dependency
-      require 'aws/s3'
+      # Done here to allow fog to be an optional dependency
+      require 'fog'
 
-      AWS::S3::Base.establish_connection!(:access_key_id => options[:access_key],
-                                          :secret_access_key => options[:secret_key])
+        connection = Fog::Storage.new(options[:credentials])
       cd dir do
-        upload_sub_dir('.', options[:bucket])
+        upload_sub_dir(connection, '.', options[:bucket], options[:public])
       end
     end
 
-    def upload_sub_dir(dir, bucket)
+    def upload_sub_dir(connection, dir, bucket, is_public = false)
+      is_public ||= false
       Dir["#{dir}/*"].each do |file|
         if File.directory? file
-          upload_sub_dir(file, bucket)
+          upload_sub_dir(connection, file, bucketi, is_public)
         else
           file_name = file.gsub("./", '')
           puts "Uploading: '#{file_name}'"
-          AWS::S3::S3Object.store(file_name, open(file), bucket)
+          directory = connection.directories.get(bucket)
+          file = directory.files.create(
+            :key    => file_name,
+            :body   => open(file),
+            :public => is_public
+          )
         end
       end
     end
