@@ -41,6 +41,8 @@ More detailed usage below.
 
 ### transient
 
+[What's this all about then?](http://overwatering.org/blog/2013/03/depending-on-transient-values-in-rake/)
+
     transient :calatrava_env, ENV['CALATRAVA_ENV']
     task :build => :calatrava_env
 
