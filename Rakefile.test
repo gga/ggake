@@ -21,7 +21,7 @@ else
   }
 end
 
-directory = 'spec'
+directory = 'lib'
 
 connection = Fog::Storage.new(options[:credentials])
 connection.directories.create({
