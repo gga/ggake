@@ -1,0 +1,34 @@
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'ggake'
+require 'fog'
+
+unless ENV['FOG_MOCK'] == 'false'
+  Fog.mock!
+  options = {
+      :credentials => {
+        :provider => 'AWS',
+        :aws_access_key_id => 'whatever',
+        :aws_secret_access_key => 'asdf'
+      },
+      :bucket => 'my_bucket',
+      :public => true
+  }
+else
+  options = {
+      :credentials => Fog.credentials,
+      :bucket => 'my_bucket',
+      :public => true
+  }
+end
+
+directory = 'lib'
+
+connection = Fog::Storage.new(options[:credentials])
+connection.directories.create({
+  :key => options[:bucket],
+  :public => options[:public]
+})
+
+task :default do
+  s3cp(directory, options)
+end
