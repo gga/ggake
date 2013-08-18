@@ -15,7 +15,7 @@ module Rake
       is_public ||= false
       Dir["#{dir}/*"].each do |file|
         if File.directory? file
-          upload_sub_dir(connection, file, bucketi, is_public)
+          upload_sub_dir(connection, file, bucket, is_public)
         else
           file_name = file.gsub("./", '')
           puts "Uploading: '#{file_name}'"
