@@ -1,7 +1,7 @@
 module Rake
   module DSL
 
-    def s3cp(dir, options)
+    def cloud_cp(dir, options)
       # Done here to allow fog to be an optional dependency
       require 'fog'
 

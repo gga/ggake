@@ -31,7 +31,8 @@ This gem provides the following utilities:
 * `transient`: Allows a Rake task to depend on a transient value,
   such as an environment variable.
   
-* `s3cp`: Simple copy of a directory to an S3 bucket.
+* `cloud_cp`: Simple copy of a directory to an S3, or other cloud
+  storage, bucket.
 
 More detailed usage below.
 
@@ -46,11 +47,14 @@ More detailed usage below.
     transient :calatrava_env, ENV['CALATRAVA_ENV']
     task :build => :calatrava_env
 
-### s3cp
+### cloud_cp
 
-    s3cp(directory, bucket: s3_bucket_name,
-                    access_key: aws_access_key,
-                    secret_key: aws_secret_key)
+    cloud_ cp(directory, bucket: bucket_name,
+                         credentials: {
+                           access_key: aws_access_key,
+                           secret_key: aws_secret_key
+                         },
+                         public: true)
 
 ## Contributing
 
