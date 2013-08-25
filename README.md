@@ -28,6 +28,9 @@ This gem provides the following utilities:
 * `haml_template`: Compiles a [Haml](http://haml.info/) template to an
   HTML file.
   
+* `coffee`: Compiles a [CoffeeScript](http://coffeescript.org/) script
+  to a JavaScript script.
+  
 * `transient`: Allows a Rake task to depend on a transient value,
   such as an environment variable.
   
@@ -39,6 +42,10 @@ More detailed usage below.
 ### haml_template
 
     haml_template(path_to_haml_template, output: path_to_output_directory)
+
+### coffee
+
+    coffee(path_to_coffee, output: path_to_output_directory)
 
 ### transient
 
