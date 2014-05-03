@@ -43,6 +43,8 @@ This gem provides the following utilities:
 
 * `heroku_config_get`: Returns the value of an environment variable set for a particular Heroku app.
 
+* `dbdeploy`: Runs [DBDeploy][dbd] to migrate your database
+
 More detailed usage below.
 
 ### haml_template
@@ -80,6 +82,14 @@ More detailed usage below.
 ### heroku_config_get
 
     heroku_config_get "var", "heroku-app-name"
+    
+### dbdebploy
+
+    dbdeploy classpath: "path to DBDeploy jar and DB driver jar", db_url: "DB URL to migrate",
+             user: "User name", password: "password", driver: "Java class name for DB driver",
+             migrations: "directory containing migration scripts"
+
+The `driver` defaults to PostgreSQL. The `migrations` directory defaults to `src/db/migrations`, relative to the `Rakefile`. The `password` will not appear on any command line, or in any build logs.
 
 ## Contributing
 
@@ -88,3 +98,5 @@ More detailed usage below.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+[dbd]: http://dbdeploy.com/
