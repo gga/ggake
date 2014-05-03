@@ -36,6 +36,12 @@ This gem provides the following utilities:
   
 * `cloud_cp`: Simple copy of a directory to an S3, or other cloud
   storage, bucket.
+  
+* `foreman`: Runs Heroku's foreman tool in a clean environment.
+
+* `heroku`: Runs the Heroku command in a clean environment.
+
+* `heroku_config_get`: Returns the value of an environment variable set for a particular Heroku app.
 
 More detailed usage below.
 
@@ -62,6 +68,18 @@ More detailed usage below.
                            secret_key: aws_secret_key
                          },
                          public: true)
+                         
+### foreman
+
+    foreman [[name, "value"]] "<foreman command line here>"
+    
+### heroku
+
+    heroku ["cmd" "args"]
+
+### heroku_config_get
+
+    heroku_config_get "var", "heroku-app-name"
 
 ## Contributing
 
