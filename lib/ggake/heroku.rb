@@ -33,7 +33,7 @@ class HerokuApp
   end
 
   def package(artefact)
-    tap "package/#{@name}" do |pkg_dir|
+    "package/#{@name}".tap do |pkg_dir|
       mkdir_p pkg_dir
       cp "heroku/Procfile.#{@name}", "#{pkg_dir}/Procfile"
       cp artefact, pkg_dir
