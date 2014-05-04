@@ -33,12 +33,18 @@ class HerokuApp
   end
 
   def package(artefact)
-    mkdir_p "package/#{@name}"
-    cp "heroku/Procfile.#{@name}", "package/#{@name}/Procfile"
-    cp artefact, "package/#{@name}"
+    tap "package/#{@name}" do |pkg_dir|
+      mkdir_p pkg_dir
+      cp "heroku/Procfile.#{@name}", "#{pkg_dir}/Procfile"
+      cp artefact, pkg_dir
+    end
   end
 
   def push
     heroku "push package/#{@name} --app #{@heroku_name}"
+  end
+
+  def config(var)
+    heroku_config_get(var, @heroku_name)
   end
 end
