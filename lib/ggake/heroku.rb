@@ -44,6 +44,10 @@ class HerokuApp
     heroku "push package/#{@name} --app #{@heroku_name}"
   end
 
+  def deploy_jar(jar_file, opts)
+    heroku "deploy:jar --jar #{jar_file} --options '#{opts.join(' ')}' --app #{@heroku_name}"
+  end
+
   def config(var)
     heroku_config_get(var, @heroku_name)
   end
