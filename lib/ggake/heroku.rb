@@ -45,7 +45,9 @@ class HerokuApp
   end
 
   def deploy_jar(jar_file, opts)
-    heroku "deploy:jar --jar #{jar_file} --options '#{opts.join(' ')}' --app #{@heroku_name}"
+    option_string = ''
+    option_string = "--options #{opts.join(' ')}" unless opts.empty?
+    heroku "deploy:jar --jar #{jar_file} #{option_string} --app #{@heroku_name}"
   end
 
   def config(var)
