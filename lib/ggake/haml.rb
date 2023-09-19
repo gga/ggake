@@ -12,7 +12,7 @@ module Rake
       File.join(options[:output], File.basename(tmpl)).ext('html').tap do |html_file|
         directory options[:output]
         file html_file => [options[:output], tmpl] do
-          sh "haml -t ugly #{extras} #{tmpl} #{html_file}"
+          sh "haml #{extras} #{tmpl} #{html_file}"
         end
       end
     end
